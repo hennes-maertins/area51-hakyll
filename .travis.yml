@@ -4,8 +4,7 @@ branches:
   only:
   - master
 before install:
-- git submodule foreach --recursive 'git checkout master; git ls-files | grep -v README
-  | grep -v CNAME | xargs -r git rm'
+- git submodule foreach --recursive 'git checkout master; git ls-files | grep -v README | grep -v CNAME | xargs -r git rm'
 before_script:
 - git config --global user.email "$GIT_EMAIL"
 - git config --global user.name "$GIT_NAME"
