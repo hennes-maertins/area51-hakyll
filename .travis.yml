@@ -8,6 +8,8 @@ before install:
 before_script:
 - git config --global user.email "$GIT_EMAIL"
 - git config --global user.name "$GIT_NAME"
+script:
+  - cabal help
 after_script:
 - cd _site
 - export REMOTE=$(git config remote.origin.url | sed 's/.*:\/\///')
