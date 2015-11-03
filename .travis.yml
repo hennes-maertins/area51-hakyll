@@ -4,11 +4,14 @@ branches:
   only:
   - master
 before install:
-- git submodule foreach --recursive 'git checkout master; git ls-files | grep -v README
-  | grep -v CNAME | xargs -r git rm'
+- git submodule foreach --recursive 'git checkout master; git ls-files | grep -v README | grep -v CNAME | xargs -r git rm'
+install:
+- cabal help
 before_script:
 - git config --global user.email "$GIT_EMAIL"
 - git config --global user.name "$GIT_NAME"
+script:
+- cabal help
 after_script:
 - cd _site
 - export REMOTE=$(git config remote.origin.url | sed 's/.*:\/\///')
