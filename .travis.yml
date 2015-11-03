@@ -1,0 +1,24 @@
+language: haskell
+ghc: 7.8
+branches:
+  only:
+  - master
+before install:
+- git submodule foreach --recursive 'git checkout master; git ls-files | grep -v README
+  | grep -v CNAME | xargs -r git rm'
+before_script:
+- git config --global user.email "$GIT_EMAIL"
+- git config --global user.name "$GIT_NAME"
+after_script:
+- cd _site
+- export REMOTE=$(git config remote.origin.url | sed 's/.*:\/\///')
+- git remote add upstream "https://$GH_TOKEN@$REMOTE"
+- git fetch upstream
+- git reset upstream/gh-pages
+- git add --all
+- git status
+- git commit -m "Built by Travis ( build $TRAVIS_BUILD_NUMBER )"
+- git push github HEAD:gh-pages
+env:
+  global:
+  - secure: FntP9B2t9ME3Djo4WigG8p/pwjcGhexfv5wDZcNHcFnQisYSQ1zaQDUR09NgeaRLqEttm37TZYNNkJUdoo5R7Qxgk68o5bcTdFjz1pAzKzll5C4Ex22ky5MM8MUDKiyHGGgB2eVOldtI5+MR/lQP4sly/ofyykGuN99Oqmo97VYmZixgz8sn3b6StrwDSIQ2QQYQO61Cr51vXpgbeFD58ZvB2LugrM6GE8K2i0wndAqfvE9IJuedhgEbRsAjzYBlmZO7mLxkNrp/DkjdZZI1thZZ5xuqbfVM3o1PGCBtLGhApGw5s47GY7S580+UjlnsQnZMDc2dmtshr2ez7+7WhjyNc8QVoLpEl16wWbKldZFNxwuIoScVds5TsZ75gr9Yy8GUchsEk71cMprsU3i+HAw0m/Sp8eP81VK3cmNUDI0f6GLe13w2TXYa2Ls4/22rr3hnAZG76fQDshS2UsugAi1zPI69OrTRG8sWg2lCc+sxHxg6AzGA+UJA6gMA0ZUSoF3ZVSg1zSwh8INGXbxD/KTwfL2v/aW7lafMRCEhG6YftnAc2I7Pb4DFFVli83nNmQ4XnmNO1VGvUjVxAEmbKsrrkMV9CxPLFABl8Aq1RE7djwGOwBNWfAeG2ktsAZWGSlo5Dq9MG5O2F2mRXvVwRkplIFjMTnkQCL2ztc/9Hl8=
