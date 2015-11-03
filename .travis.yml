@@ -14,7 +14,7 @@ after_script:
 - git remote add upstream "https://$GH_TOKEN@$REMOTE"
 - git fetch upstream
 - git reset upstream/gh-pages
-- git add --all
+- git add --all .
 - git status
 - git commit -m "Built by Travis ( build $TRAVIS_BUILD_NUMBER )"
 - git push github HEAD:gh-pages
