@@ -6,21 +6,20 @@ branches:
 #before install:
 #- git submodule foreach --recursive 'git checkout master; git ls-files | grep -v README | grep -v CNAME | xargs -r git rm'
 before_script:
-- echo $foo
 - git config --global user.email "$GIT_EMAIL"
 - git config --global user.name "$GIT_NAME"
 after_script:
 - cd _site
 - export REMOTE=$(git config remote.origin.url | sed 's/.*:\/\///')
-- git remote add upstream "https://$GH_TOKEN@$REMOTE"
+- git remote add upstream "https://$GH_TOKEN@$REMOTE" > /dev/null 2>&1
 - git fetch upstream
 - git reset upstream/gh-pages
 - git add --all .
 - git status
 - git commit -m "Built by Travis ( build $TRAVIS_BUILD_NUMBER )"
-- git push upstream HEAD:gh-pages
+- git push upstream HEAD:gh-pages > /dev/null 2>&1
+- echo $0
 env:
   global:
-    - foo=bar
     - secure: "TSlf89iTCNAM5DkFv1lKdurcjXW4YM9HSeDPoBJ/+9H7ElUDM51mWqNPvBDmgSFEPyg2TzCquwOGS7GI2wqplL65/kUTtL+Hn1G3W8GG0b9W/06Iaa2Dw0Nx3MvqRZrGQ902f3tmeLfqr8KNz4zr1hkdR8SUTQEk6P9RzIExcPauuo3k4DeaD1/ag//b87PEyu7dUxJEA7R+5I69wR6CoN1zghMwNRhYGItPCSGAo6wZusetuNlYDCEJ4pyrgiyUsM2OjMQRKY93hBZ/voHtsLpuFnLDyh9kqZHpxXZB8Zqz7x/2ostEsF6sPfkt2eQJufhc0lHwlMv6Snf1lvVYPJHVwxxEgMEoyQlBoubUPNIMjr/72D3SYP3ZRu2hkOlEJYwYF2+FszjQx/pujmyN5mBBPtOlidunyFvLD4bS+NR2pQerwDughJBM5PI8pL50K8bI2svXCK5STbvdHj31g1t+ZTXl36D4glZE6r85qNLY4QXQo23QW7B32mvZ+vm0iIW3td1SmrVgFDd6rkpMn17WZd00l/uY6UuAXN6v7KmPIAhupXiQyvNyigZ3FAW/Y/nYnmdFwWee6KxUwsCD+tmNK8dze0CKp2VKOAs8rcfplhVzXzzjr4AY7eBu6ng7QSv6J9LpbD/hhwj2CFfV7MjOWdcPWDQ4DBo1HQjuswk="
 # end
