@@ -6,6 +6,7 @@ branches:
 #before install:
 #- git submodule foreach --recursive 'git checkout master; git ls-files | grep -v README | grep -v CNAME | xargs -r git rm'
 before_script:
+- echo $foo
 - git config --global user.email "$GIT_EMAIL"
 - git config --global user.name "$GIT_NAME"
 after_script:
@@ -20,5 +21,6 @@ after_script:
 - git push upstream HEAD:gh-pages
 env:
   global:
-    - secure: "g2McsVAO/2/kXTiXphNdyI/Yt57RES4Tn5Nmu1yhWoZtIuOB86doFC2VKGdfYK3kf3HMsxjgLP8a3S4TeTQ8T6NJCioYBFdVd3K7WC+v05NgkF+8t4p+DypRDkEfvk2URHw+vWrOo6YQrfMPmeRlQYCpAahRqIMcz5QQO8Nfgv6gGyxDDHyOqB0is8UflIP0RgFcUhKo+P99vcLNzzfoFNs+6hjf8Mdgiy10Z7rOLjDknTq0JUlyy+oZumWqd0XGSMn5dydGfFRccA1tYAheWWEx9IpR8AP+rwp337vBBBvT2t4JD4o535GSD+3Mxr5zacc9saae+FCM0D2dtgBOdePiWv60LE8BQHTsyO5BYZc82baQX187AtQ+24EtY7R0Eku35LatQtr4GCEI2wGEqpNEAjYyy+b3pXZDoaZpFWkFPbGHIdVng5C3mZLSaWIBjVzOwGNP7MlPvsjFA1wfy+Zh3J9n+knZTS5WO6T6fHNiFB1sNRzyS3CZ9NVzCLWICRdWbCvAo1iINhtvbdzy7ZouuMk9s6gwtexz8k93k+tfHCqCFOz5R0FnvQoHLuzQ4BgjTQdrjktICuDjGSqq/q5lAv2wCp/7xG7GKaYw1L40oVm/InVbRhi2IIU8jWfj5gXxTQ6sQ39qb4DeXkuKvSUaBq/WpYREaHunAguo6M8="
+    - foo=bar
+    - secure: "TSlf89iTCNAM5DkFv1lKdurcjXW4YM9HSeDPoBJ/+9H7ElUDM51mWqNPvBDmgSFEPyg2TzCquwOGS7GI2wqplL65/kUTtL+Hn1G3W8GG0b9W/06Iaa2Dw0Nx3MvqRZrGQ902f3tmeLfqr8KNz4zr1hkdR8SUTQEk6P9RzIExcPauuo3k4DeaD1/ag//b87PEyu7dUxJEA7R+5I69wR6CoN1zghMwNRhYGItPCSGAo6wZusetuNlYDCEJ4pyrgiyUsM2OjMQRKY93hBZ/voHtsLpuFnLDyh9kqZHpxXZB8Zqz7x/2ostEsF6sPfkt2eQJufhc0lHwlMv6Snf1lvVYPJHVwxxEgMEoyQlBoubUPNIMjr/72D3SYP3ZRu2hkOlEJYwYF2+FszjQx/pujmyN5mBBPtOlidunyFvLD4bS+NR2pQerwDughJBM5PI8pL50K8bI2svXCK5STbvdHj31g1t+ZTXl36D4glZE6r85qNLY4QXQo23QW7B32mvZ+vm0iIW3td1SmrVgFDd6rkpMn17WZd00l/uY6UuAXN6v7KmPIAhupXiQyvNyigZ3FAW/Y/nYnmdFwWee6KxUwsCD+tmNK8dze0CKp2VKOAs8rcfplhVzXzzjr4AY7eBu6ng7QSv6J9LpbD/hhwj2CFfV7MjOWdcPWDQ4DBo1HQjuswk="
 # end
